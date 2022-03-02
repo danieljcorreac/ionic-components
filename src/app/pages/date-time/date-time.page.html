@@ -1,0 +1,64 @@
+<app-header title="Datetime"></app-header>
+
+<ion-content>
+  
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Datos de Nacimiento</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Fecha de Nacimiento</ion-label>
+      <ion-input
+        value="{{ fechaNacimiento | date: 'dd.MM.yyyy' }}"
+        id="date"
+        class="ion-text-end"></ion-input>
+      <ion-popover trigger="date" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-datetime
+            #popoverDatetime
+            presentation="date"
+            [(ngModel)]="fechaNacimiento"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+    <ion-item>
+      <ion-input [value]="fechaNacimiento2"></ion-input>
+      <ion-button fill="clear" id="open-date-input-2">
+        <ion-icon icon="calendar"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="open-date-input-2" show-backdrop="false">
+        <ng-template>
+          <ion-datetime
+            #popoverDatetime2
+            presentation="date"
+            (ionChange)="fechaNacimiento2 = formatDate(popoverDatetime2.value); popoverDatetime2.confirm(true);"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha de Nacimiento</ion-label>
+      <ion-input
+        value="{{ fechaNacimiento | date: 'dd.MM.yyyy' }}"
+        id="dateModal"
+        class="ion-text-end"></ion-input>
+      <ion-modal trigger="dateModal">
+        <ion-content>
+          <ion-datetime></ion-datetime>
+        </ion-content>
+      </ion-modal>
+    </ion-item>
+
+
+  </ion-list>
+
+  <div class="hacking-datetime">
+    <ion-datetime presentation="year" [yearValues]="yearValues"></ion-datetime>
+    <ion-datetime presentation="month-year"></ion-datetime>
+  </div>
+
+</ion-content>
