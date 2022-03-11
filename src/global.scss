@@ -29,3 +29,7 @@
 .action-sheet-destructive .sc-ion-action-sheet-md {
     color: var(--ion-color-danger, #eb445a) !important;
 }
+
+ion-item {
+    --background: transparent;
+}
